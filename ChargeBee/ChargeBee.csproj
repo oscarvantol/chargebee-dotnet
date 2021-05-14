@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard1.2;netstandard2.0;net45</TargetFrameworks>
-    <Version>2.8.9-preview1</Version>
+    <Version>2.8.9-preview2</Version>
     <PackageId>chargebee-alt</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/oscarvantol/chargebee-dotnet</PackageProjectUrl>
@@ -40,6 +40,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <AssemblyOriginatorKeyFile>Cb-Dotnet.snk</AssemblyOriginatorKeyFile>
+    <Authors>Oscar van Tol</Authors>
+    <Description>Alternative ChargeBee client package</Description>
   </PropertyGroup>
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4')) AND '$(MSBuildRuntimeType)' == 'Core' AND '$(OS)' != 'Windows_NT'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
