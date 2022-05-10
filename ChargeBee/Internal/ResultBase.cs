@@ -37,6 +37,10 @@ namespace ChargeBee.Internal
         {
             get {  return GetResource<Subscription>("subscription"); }
         }
+        public SubscriptionEntitlement Entitlement
+        {
+            get { return GetResource<SubscriptionEntitlement>("subscription_entitlement"); }
+        }
         public ContractTerm ContractTerm
         {
             get {  return GetResource<ContractTerm>("contract_term"); }
