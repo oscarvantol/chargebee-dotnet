@@ -322,5 +322,10 @@ namespace ChargeBee.Internal
                 return default(T);
             }
         }
+
+        public JToken GetJToken()
+        {
+            return m_jobj;
+        }
     }
 }
