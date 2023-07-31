@@ -274,6 +274,8 @@ namespace ChargeBee.Models
             PaypalExpressCheckout,
             [EnumMember(Value = "direct_debit")]
             DirectDebit,
+            [EnumMember(Value = "boleto")]
+            Boleto,
 
         }
 
@@ -296,6 +298,8 @@ namespace ChargeBee.Models
                 Authorized,
                 [EnumMember(Value = "refused")]
                 Refused,
+                [EnumMember(Value = "pending_authorization")]
+                PendingAuthorization,
             }
 
             public string Id {

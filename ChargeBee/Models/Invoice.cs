@@ -129,6 +129,11 @@ namespace ChargeBee.Models
             string url = ApiUtil.BuildUrl("invoices", CheckNull(id), "download_einvoice");
             return new EntityRequest<Type>(url, HttpMethod.GET);
         }
+        public static InvoiceListPaymentReferenceNumbersRequest ListPaymentReferenceNumbers()
+        {
+            string url = ApiUtil.BuildUrl("invoices", "payment_reference_numbers");
+            return new InvoiceListPaymentReferenceNumbersRequest(url);
+        }
         public static AddChargeRequest AddCharge(string id)
         {
             string url = ApiUtil.BuildUrl("invoices", CheckNull(id), "add_charge");
@@ -212,6 +217,11 @@ namespace ChargeBee.Models
         public static EntityRequest<Type> ResendEinvoice(string id)
         {
             string url = ApiUtil.BuildUrl("invoices", CheckNull(id), "resend_einvoice");
+            return new EntityRequest<Type>(url, HttpMethod.POST);
+        }
+        public static EntityRequest<Type> SendEinvoice(string id)
+        {
+            string url = ApiUtil.BuildUrl("invoices", CheckNull(id), "send_einvoice");
             return new EntityRequest<Type>(url, HttpMethod.POST);
         }
         #endregion
@@ -337,6 +347,10 @@ namespace ChargeBee.Models
         {
             get { return GetValue<long>("tax", true); }
         }
+        public decimal? LocalCurrencyExchangeRate 
+        {
+            get { return GetValue<decimal?>("local_currency_exchange_rate", false); }
+        }
         public bool? FirstInvoice 
         {
             get { return GetValue<bool?>("first_invoice", false); }
@@ -449,6 +463,10 @@ namespace ChargeBee.Models
         {
             get { return GetValue<bool>("deleted", true); }
         }
+        public string TaxCategory 
+        {
+            get { return GetValue<string>("tax_category", false); }
+        }
         public string VatNumberPrefix 
         {
             get { return GetValue<string>("vat_number_prefix", false); }
@@ -546,6 +564,11 @@ namespace ChargeBee.Models
             public CreateRequest RetainPaymentSource(bool retainPaymentSource) 
             {
                 m_params.AddOpt("retain_payment_source", retainPaymentSource);
+                return this;
+            }
+            public CreateRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public CreateRequest ShippingAddressFirstName(string shippingAddressFirstName) 
@@ -1636,6 +1659,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("payment_source_id", paymentSourceId);
                 return this;
             }
+            public ChargeRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
+                return this;
+            }
         }
         public class ChargeAddonRequest : EntityRequest<ChargeAddonRequest> 
         {
@@ -1715,6 +1743,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("payment_source_id", paymentSourceId);
                 return this;
             }
+            public ChargeAddonRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
+                return this;
+            }
         }
         public class CreateForChargeItemRequest : EntityRequest<CreateForChargeItemRequest> 
         {
@@ -1746,6 +1779,11 @@ namespace ChargeBee.Models
             public CreateForChargeItemRequest PaymentSourceId(string paymentSourceId) 
             {
                 m_params.AddOpt("payment_source_id", paymentSourceId);
+                return this;
+            }
+            public CreateForChargeItemRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public CreateForChargeItemRequest InvoiceDate(long invoiceDate) 
@@ -2279,6 +2317,21 @@ namespace ChargeBee.Models
                 m_params.AddOpt("line_items[tax10_amount][" + index + "]", lineItemTax10Amount);
                 return this;
             }
+            public ImportInvoiceRequest PaymentReferenceNumberId(int index, string paymentReferenceNumberId) 
+            {
+                m_params.AddOpt("payment_reference_numbers[id][" + index + "]", paymentReferenceNumberId);
+                return this;
+            }
+            public ImportInvoiceRequest PaymentReferenceNumberType(int index, PaymentReferenceNumber.TypeEnum paymentReferenceNumberType) 
+            {
+                m_params.Add("payment_reference_numbers[type][" + index + "]", paymentReferenceNumberType);
+                return this;
+            }
+            public ImportInvoiceRequest PaymentReferenceNumberNumber(int index, string paymentReferenceNumberNumber) 
+            {
+                m_params.Add("payment_reference_numbers[number][" + index + "]", paymentReferenceNumberNumber);
+                return this;
+            }
             public ImportInvoiceRequest LineItemTierLineItemId(int index, string lineItemTierLineItemId) 
             {
                 m_params.Add("line_item_tiers[line_item_id][" + index + "]", lineItemTierLineItemId);
@@ -2590,6 +2643,23 @@ namespace ChargeBee.Models
                 return this;
             }
         }
+        public class InvoiceListPaymentReferenceNumbersRequest : ListRequestBase<InvoiceListPaymentReferenceNumbersRequest> 
+        {
+            public InvoiceListPaymentReferenceNumbersRequest(string url) 
+                    : base(url)
+            {
+            }
+
+            public StringFilter<InvoiceListPaymentReferenceNumbersRequest> Id() 
+            {
+                return new StringFilter<InvoiceListPaymentReferenceNumbersRequest>("id", this).SupportsMultiOperators(true);        
+            }
+            public StringFilter<InvoiceListPaymentReferenceNumbersRequest> PaymentReferenceNumberNumber() 
+            {
+                return new StringFilter<InvoiceListPaymentReferenceNumbersRequest>("payment_reference_number[number]", this).SupportsMultiOperators(true);        
+            }
+
+        }
         public class AddChargeRequest : EntityRequest<AddChargeRequest> 
         {
             public AddChargeRequest(string url, HttpMethod method) 
@@ -2842,6 +2912,11 @@ namespace ChargeBee.Models
             public CollectPaymentRequest Comment(string comment) 
             {
                 m_params.AddOpt("comment", comment);
+                return this;
+            }
+            public CollectPaymentRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
         }
@@ -3852,6 +3927,8 @@ namespace ChargeBee.Models
                 AddonItemPrice,
                 [EnumMember(Value = "charge_item_price")]
                 ChargeItemPrice,
+                [EnumMember(Value = "tax")]
+                Tax,
             }
 
             public EntityTypeEnum EntityType {
@@ -4013,6 +4090,10 @@ namespace ChargeBee.Models
 
             public string Id {
                 get { return GetValue<string>("id", true); }
+            }
+
+            public string ReferenceNumber {
+                get { return GetValue<string>("reference_number", false); }
             }
 
             public StatusEnum Status {

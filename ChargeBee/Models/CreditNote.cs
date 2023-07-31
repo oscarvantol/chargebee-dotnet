@@ -102,6 +102,11 @@ namespace ChargeBee.Models
             string url = ApiUtil.BuildUrl("credit_notes", CheckNull(id), "resend_einvoice");
             return new EntityRequest<Type>(url, HttpMethod.POST);
         }
+        public static EntityRequest<Type> SendEinvoice(string id)
+        {
+            string url = ApiUtil.BuildUrl("credit_notes", CheckNull(id), "send_einvoice");
+            return new EntityRequest<Type>(url, HttpMethod.POST);
+        }
         public static ImportCreditNoteRequest ImportCreditNote()
         {
             string url = ApiUtil.BuildUrl("credit_notes", "import_credit_note");
@@ -257,6 +262,14 @@ namespace ChargeBee.Models
         public bool Deleted 
         {
             get { return GetValue<bool>("deleted", true); }
+        }
+        public string TaxCategory 
+        {
+            get { return GetValue<string>("tax_category", false); }
+        }
+        public decimal? LocalCurrencyExchangeRate 
+        {
+            get { return GetValue<decimal?>("local_currency_exchange_rate", false); }
         }
         public string CreateReasonCode 
         {
@@ -622,7 +635,7 @@ namespace ChargeBee.Models
             }
             public ImportCreditNoteRequest Date(long date) 
             {
-                m_params.AddOpt("date", date);
+                m_params.Add("date", date);
                 return this;
             }
             public ImportCreditNoteRequest Status(CreditNote.StatusEnum status) 
@@ -1079,6 +1092,10 @@ namespace ChargeBee.Models
 
             public string Id {
                 get { return GetValue<string>("id", true); }
+            }
+
+            public string ReferenceNumber {
+                get { return GetValue<string>("reference_number", false); }
             }
 
             public StatusEnum Status {

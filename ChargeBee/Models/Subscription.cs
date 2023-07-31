@@ -698,6 +698,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("client_profile_id", clientProfileId);
                 return this;
             }
+            public CreateRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
+                return this;
+            }
             public CreateRequest CustomerId(string customerId) 
             {
                 m_params.AddOpt("customer[id]", customerId);
@@ -1193,6 +1198,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("customer[is_einvoice_enabled]", customerIsEinvoiceEnabled);
                 return this;
             }
+            public CreateRequest CustomerEinvoicingMethod(ChargeBee.Models.Enums.EinvoicingMethodEnum customerEinvoicingMethod) 
+            {
+                m_params.AddOpt("customer[einvoicing_method]", customerEinvoicingMethod);
+                return this;
+            }
             public CreateRequest CustomerRegisteredForGst(bool customerRegisteredForGst) 
             {
                 m_params.AddOpt("customer[registered_for_gst]", customerRegisteredForGst);
@@ -1321,6 +1331,18 @@ namespace ChargeBee.Models
             public CreateRequest AddonTrialEnd(int index, long addonTrialEnd) 
             {
                 m_params.AddOpt("addons[trial_end][" + index + "]", addonTrialEnd);
+                return this;
+            }
+            [Obsolete]
+            public CreateRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public CreateRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
                 return this;
             }
         }
@@ -1480,6 +1502,11 @@ namespace ChargeBee.Models
             public CreateForCustomerRequest TrialEndAction(ChargeBee.Models.Enums.TrialEndActionEnum trialEndAction) 
             {
                 m_params.AddOpt("trial_end_action", trialEndAction);
+                return this;
+            }
+            public CreateForCustomerRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public CreateForCustomerRequest ShippingAddressFirstName(string shippingAddressFirstName) 
@@ -1678,6 +1705,18 @@ namespace ChargeBee.Models
                 m_params.AddOpt("addons[trial_end][" + index + "]", addonTrialEnd);
                 return this;
             }
+            [Obsolete]
+            public CreateForCustomerRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public CreateForCustomerRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
+                return this;
+            }
         }
         public class CreateWithItemsRequest : EntityRequest<CreateWithItemsRequest> 
         {
@@ -1831,6 +1870,11 @@ namespace ChargeBee.Models
             public CreateWithItemsRequest TrialEndAction(ChargeBee.Models.Enums.TrialEndActionEnum trialEndAction) 
             {
                 m_params.AddOpt("trial_end_action", trialEndAction);
+                return this;
+            }
+            public CreateWithItemsRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public CreateWithItemsRequest ShippingAddressFirstName(string shippingAddressFirstName) 
@@ -2083,6 +2127,18 @@ namespace ChargeBee.Models
             public CreateWithItemsRequest ItemTierPriceInDecimal(int index, string itemTierPriceInDecimal) 
             {
                 m_params.AddOpt("item_tiers[price_in_decimal][" + index + "]", itemTierPriceInDecimal);
+                return this;
+            }
+            [Obsolete]
+            public CreateWithItemsRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public CreateWithItemsRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
                 return this;
             }
         }
@@ -2726,6 +2782,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("customer[is_einvoice_enabled]", customerIsEinvoiceEnabled);
                 return this;
             }
+            public UpdateRequest CustomerEinvoicingMethod(ChargeBee.Models.Enums.EinvoicingMethodEnum customerEinvoicingMethod) 
+            {
+                m_params.AddOpt("customer[einvoicing_method]", customerEinvoicingMethod);
+                return this;
+            }
             public UpdateRequest CustomerEntityIdentifierStandard(string customerEntityIdentifierStandard) 
             {
                 m_params.AddOpt("customer[entity_identifier_standard]", customerEntityIdentifierStandard);
@@ -2829,6 +2890,24 @@ namespace ChargeBee.Models
             public UpdateRequest AddonTrialEnd(int index, long addonTrialEnd) 
             {
                 m_params.AddOpt("addons[trial_end][" + index + "]", addonTrialEnd);
+                return this;
+            }
+            [Obsolete]
+            public UpdateRequest AddonProrationType(int index, ChargeBee.Models.Enums.ProrationTypeEnum addonProrationType) 
+            {
+                m_params.AddOpt("addons[proration_type][" + index + "]", addonProrationType);
+                return this;
+            }
+            [Obsolete]
+            public UpdateRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public UpdateRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
                 return this;
             }
         }
@@ -3009,6 +3088,11 @@ namespace ChargeBee.Models
             public UpdateForItemsRequest TrialEndAction(ChargeBee.Models.Enums.TrialEndActionEnum trialEndAction) 
             {
                 m_params.AddOpt("trial_end_action", trialEndAction);
+                return this;
+            }
+            public UpdateForItemsRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             [Obsolete]
@@ -3336,6 +3420,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("customer[is_einvoice_enabled]", customerIsEinvoiceEnabled);
                 return this;
             }
+            public UpdateForItemsRequest CustomerEinvoicingMethod(ChargeBee.Models.Enums.EinvoicingMethodEnum customerEinvoicingMethod) 
+            {
+                m_params.AddOpt("customer[einvoicing_method]", customerEinvoicingMethod);
+                return this;
+            }
             public UpdateForItemsRequest CustomerEntityIdentifierStandard(string customerEntityIdentifierStandard) 
             {
                 m_params.AddOpt("customer[entity_identifier_standard]", customerEntityIdentifierStandard);
@@ -3507,6 +3596,18 @@ namespace ChargeBee.Models
                 m_params.AddOpt("item_tiers[price_in_decimal][" + index + "]", itemTierPriceInDecimal);
                 return this;
             }
+            [Obsolete]
+            public UpdateForItemsRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public UpdateForItemsRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
+                return this;
+            }
         }
         public class ChangeTermEndRequest : EntityRequest<ChangeTermEndRequest> 
         {
@@ -3582,6 +3683,11 @@ namespace ChargeBee.Models
             public ReactivateRequest ContractTermBillingCycleOnRenewal(int contractTermBillingCycleOnRenewal) 
             {
                 m_params.AddOpt("contract_term_billing_cycle_on_renewal", contractTermBillingCycleOnRenewal);
+                return this;
+            }
+            public ReactivateRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public ReactivateRequest ContractTermActionAtTermEnd(SubscriptionContractTerm.ActionAtTermEndEnum contractTermActionAtTermEnd) 
@@ -4116,6 +4222,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("contract_term[total_amount_raised]", contractTermTotalAmountRaised);
                 return this;
             }
+            public ImportSubscriptionRequest ContractTermTotalAmountRaisedBeforeTax(long contractTermTotalAmountRaisedBeforeTax) 
+            {
+                m_params.AddOpt("contract_term[total_amount_raised_before_tax]", contractTermTotalAmountRaisedBeforeTax);
+                return this;
+            }
             public ImportSubscriptionRequest ContractTermActionAtTermEnd(SubscriptionContractTerm.ActionAtTermEndEnum contractTermActionAtTermEnd) 
             {
                 m_params.AddOpt("contract_term[action_at_term_end]", contractTermActionAtTermEnd);
@@ -4494,6 +4605,18 @@ namespace ChargeBee.Models
                 m_params.AddOpt("charged_event_based_addons[last_charged_at][" + index + "]", chargedEventBasedAddonLastChargedAt);
                 return this;
             }
+            [Obsolete]
+            public ImportSubscriptionRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public ImportSubscriptionRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
+                return this;
+            }
         }
         public class ImportForCustomerRequest : EntityRequest<ImportForCustomerRequest> 
         {
@@ -4660,6 +4783,11 @@ namespace ChargeBee.Models
             public ImportForCustomerRequest ContractTermTotalAmountRaised(long contractTermTotalAmountRaised) 
             {
                 m_params.AddOpt("contract_term[total_amount_raised]", contractTermTotalAmountRaised);
+                return this;
+            }
+            public ImportForCustomerRequest ContractTermTotalAmountRaisedBeforeTax(long contractTermTotalAmountRaisedBeforeTax) 
+            {
+                m_params.AddOpt("contract_term[total_amount_raised_before_tax]", contractTermTotalAmountRaisedBeforeTax);
                 return this;
             }
             public ImportForCustomerRequest ContractTermActionAtTermEnd(SubscriptionContractTerm.ActionAtTermEndEnum contractTermActionAtTermEnd) 
@@ -4842,6 +4970,18 @@ namespace ChargeBee.Models
                 m_params.AddOpt("charged_event_based_addons[last_charged_at][" + index + "]", chargedEventBasedAddonLastChargedAt);
                 return this;
             }
+            [Obsolete]
+            public ImportForCustomerRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public ImportForCustomerRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
+                return this;
+            }
         }
         public class ImportContractTermRequest : EntityRequest<ImportContractTermRequest> 
         {
@@ -4885,9 +5025,19 @@ namespace ChargeBee.Models
                 m_params.AddOpt("contract_term[total_amount_raised]", contractTermTotalAmountRaised);
                 return this;
             }
+            public ImportContractTermRequest ContractTermTotalAmountRaisedBeforeTax(long contractTermTotalAmountRaisedBeforeTax) 
+            {
+                m_params.AddOpt("contract_term[total_amount_raised_before_tax]", contractTermTotalAmountRaisedBeforeTax);
+                return this;
+            }
             public ImportContractTermRequest ContractTermTotalContractValue(long contractTermTotalContractValue) 
             {
                 m_params.AddOpt("contract_term[total_contract_value]", contractTermTotalContractValue);
+                return this;
+            }
+            public ImportContractTermRequest ContractTermTotalContractValueBeforeTax(long contractTermTotalContractValueBeforeTax) 
+            {
+                m_params.AddOpt("contract_term[total_contract_value_before_tax]", contractTermTotalContractValueBeforeTax);
                 return this;
             }
             public ImportContractTermRequest ContractTermBillingCycle(int contractTermBillingCycle) 
@@ -5182,6 +5332,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("meta_data", metaData);
                 return this;
             }
+            public ImportForItemsRequest CancelReasonCode(string cancelReasonCode) 
+            {
+                m_params.AddOpt("cancel_reason_code", cancelReasonCode);
+                return this;
+            }
             public ImportForItemsRequest CreatePendingInvoices(bool createPendingInvoices) 
             {
                 m_params.AddOpt("create_pending_invoices", createPendingInvoices);
@@ -5215,6 +5370,11 @@ namespace ChargeBee.Models
             public ImportForItemsRequest ContractTermTotalAmountRaised(long contractTermTotalAmountRaised) 
             {
                 m_params.AddOpt("contract_term[total_amount_raised]", contractTermTotalAmountRaised);
+                return this;
+            }
+            public ImportForItemsRequest ContractTermTotalAmountRaisedBeforeTax(long contractTermTotalAmountRaisedBeforeTax) 
+            {
+                m_params.AddOpt("contract_term[total_amount_raised_before_tax]", contractTermTotalAmountRaisedBeforeTax);
                 return this;
             }
             public ImportForItemsRequest ContractTermActionAtTermEnd(SubscriptionContractTerm.ActionAtTermEndEnum contractTermActionAtTermEnd) 
@@ -5458,6 +5618,18 @@ namespace ChargeBee.Models
                 m_params.AddOpt("item_tiers[price_in_decimal][" + index + "]", itemTierPriceInDecimal);
                 return this;
             }
+            [Obsolete]
+            public ImportForItemsRequest CouponCouponId(int index, string couponCouponId) 
+            {
+                m_params.AddOpt("coupons[coupon_id][" + index + "]", couponCouponId);
+                return this;
+            }
+            [Obsolete]
+            public ImportForItemsRequest CouponApplyTill(int index, long couponApplyTill) 
+            {
+                m_params.AddOpt("coupons[apply_till][" + index + "]", couponApplyTill);
+                return this;
+            }
         }
         public class OverrideBillingProfileRequest : EntityRequest<OverrideBillingProfileRequest> 
         {
@@ -5696,6 +5868,11 @@ namespace ChargeBee.Models
             public ResumeRequest UnpaidInvoicesHandling(ChargeBee.Models.Enums.UnpaidInvoicesHandlingEnum unpaidInvoicesHandling) 
             {
                 m_params.AddOpt("unpaid_invoices_handling", unpaidInvoicesHandling);
+                return this;
+            }
+            public ResumeRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public ResumeRequest PaymentIntentId(string paymentIntentId) 
@@ -6251,6 +6428,10 @@ namespace ChargeBee.Models
 
             public long TotalContractValue {
                 get { return GetValue<long>("total_contract_value", true); }
+            }
+
+            public long TotalContractValueBeforeTax {
+                get { return GetValue<long>("total_contract_value_before_tax", true); }
             }
 
             public int? CancellationCutoffPeriod {

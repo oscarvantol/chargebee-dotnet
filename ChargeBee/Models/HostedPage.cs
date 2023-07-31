@@ -142,6 +142,16 @@ namespace ChargeBee.Models
             string url = ApiUtil.BuildUrl("hosted_pages", "pre_cancel");
             return new PreCancelRequest(url, HttpMethod.POST);
         }
+        public static EventsRequest Events()
+        {
+            string url = ApiUtil.BuildUrl("hosted_pages", "events");
+            return new EventsRequest(url, HttpMethod.POST);
+        }
+        public static ViewVoucherRequest ViewVoucher()
+        {
+            string url = ApiUtil.BuildUrl("hosted_pages", "view_voucher");
+            return new ViewVoucherRequest(url, HttpMethod.POST);
+        }
         #endregion
         
         #region Properties
@@ -3006,6 +3016,47 @@ namespace ChargeBee.Models
                 return this;
             }
         }
+        public class EventsRequest : EntityRequest<EventsRequest> 
+        {
+            public EventsRequest(string url, HttpMethod method) 
+                    : base(url, method)
+            {
+            }
+
+            public EventsRequest EventName(ChargeBee.Models.Enums.EventNameEnum eventName) 
+            {
+                m_params.Add("event_name", eventName);
+                return this;
+            }
+            public EventsRequest OccurredAt(long occurredAt) 
+            {
+                m_params.AddOpt("occurred_at", occurredAt);
+                return this;
+            }
+            public EventsRequest EventData(JToken eventData) 
+            {
+                m_params.Add("event_data", eventData);
+                return this;
+            }
+        }
+        public class ViewVoucherRequest : EntityRequest<ViewVoucherRequest> 
+        {
+            public ViewVoucherRequest(string url, HttpMethod method) 
+                    : base(url, method)
+            {
+            }
+
+            public ViewVoucherRequest PaymentVoucherId(string paymentVoucherId) 
+            {
+                m_params.Add("payment_voucher[id]", paymentVoucherId);
+                return this;
+            }
+            public ViewVoucherRequest CustomerLocale(string customerLocale) 
+            {
+                m_params.AddOpt("customer[locale]", customerLocale);
+                return this;
+            }
+        }
         #endregion
 
         public enum TypeEnum
@@ -3036,6 +3087,8 @@ namespace ChargeBee.Models
             CheckoutOneTime,
             [EnumMember(Value = "pre_cancel")]
             PreCancel,
+            [EnumMember(Value = "view_voucher")]
+            ViewVoucher,
 
         }
         public enum StateEnum

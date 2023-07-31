@@ -28,8 +28,7 @@ A couple of terms used in the above table are explained below:
 - **Status**: The current development status for the library version. An **Active** major version is currently being maintained and continues to get backward-compatible changes. **Inactive** versions no longer receive any updates.
 - **Branch**: The branch in this repository containing the source code for the latest release of the library version. Every version of the library has been [tagged](https://github.com/chargebee/chargebee-dotnet/tags). You can check out the source code for any version using its tag.
 
-🔴 **Alert!** Eventually, v2 will become **inactive**, after which it will no longer receive any new updates. We encourage you to [upgrade to v3]() at the earliest.
-
+🔴 **Attention**: The support for v2 will eventually be discontinued on **December 31st 2023** and will no longer receive any further updates. We strongly recommend [upgrading to v3](https://github.com/chargebee/chargebee-dotnet/wiki/Migration-guide-for-v3) as soon as possible.
 **Note:** See the [changelog](CHANGELOG.md) for a history of changes.
 
 ## Install the library
@@ -68,6 +67,29 @@ EntityResult result = Subscription.Create()
 Subscription subscription = result.Subscription;
 Customer customer = result.Customer;
 ```
+
+### Create an idempotent request
+[Idempotency keys](https://apidocs.chargebee.com/docs/api/idempotency?prod_cat_ver=2) are passed along with request headers to allow a safe retry of POST requests. 
+
+```cs
+using ChargeBee.Api;
+using ChargeBee.Models;
+ApiConfig.Configure("site","api_key");
+EntityResult result = Customer.Create()
+    .FirstName("John")
+    .LastName("Doe")
+    .Email("john@test.com")
+    .SetIdempotencyKey("<<UUID>>") // Replace <<UUID>> with a unique string
+    .Request();
+Customer customer = result.Customer;
+Console.WriteLine(ApiConfig.SerializeObject(customer));
+HttpResponseHeaders httpResponseHeaders = result.ResponseHeaders; // Retrieves response headers
+Console.WriteLine(httpResponseHeaders);
+string idempotencyReplayedValue = result.IsIdempotencyReplayed(); // Retrieves idempotency replayed header value 
+Console.WriteLine(idempotencyReplayedValue);
+
+```
+`isIdempotencyReplayed()` method can be accessed to differentiate between original and replayed requests.
 
 ### Serialize an object
 

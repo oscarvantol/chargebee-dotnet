@@ -369,6 +369,10 @@ namespace ChargeBee.Models
         {
             get { return GetValue<bool?>("is_einvoice_enabled", false); }
         }
+        public EinvoicingMethodEnum? EinvoicingMethod 
+        {
+            get { return GetEnum<EinvoicingMethodEnum>("einvoicing_method", false); }
+        }
         public JToken MetaData 
         {
             get { return GetJToken("meta_data", false); }
@@ -514,6 +518,11 @@ namespace ChargeBee.Models
             public CreateRequest IsEinvoiceEnabled(bool isEinvoiceEnabled) 
             {
                 m_params.AddOpt("is_einvoice_enabled", isEinvoiceEnabled);
+                return this;
+            }
+            public CreateRequest EinvoicingMethod(ChargeBee.Models.Enums.EinvoicingMethodEnum einvoicingMethod) 
+            {
+                m_params.AddOpt("einvoicing_method", einvoicingMethod);
                 return this;
             }
             public CreateRequest Taxability(ChargeBee.Models.Enums.TaxabilityEnum taxability) 
@@ -1244,6 +1253,11 @@ namespace ChargeBee.Models
                 m_params.AddOpt("is_einvoice_enabled", isEinvoiceEnabled);
                 return this;
             }
+            public UpdateBillingInfoRequest EinvoicingMethod(ChargeBee.Models.Enums.EinvoicingMethodEnum einvoicingMethod) 
+            {
+                m_params.AddOpt("einvoicing_method", einvoicingMethod);
+                return this;
+            }
             public UpdateBillingInfoRequest BillingAddressFirstName(string billingAddressFirstName) 
             {
                 m_params.AddOpt("billing_address[first_name]", billingAddressFirstName);
@@ -1644,6 +1658,11 @@ namespace ChargeBee.Models
             public CollectPaymentRequest RetainPaymentSource(bool retainPaymentSource) 
             {
                 m_params.AddOpt("retain_payment_source", retainPaymentSource);
+                return this;
+            }
+            public CollectPaymentRequest PaymentInitiator(ChargeBee.Models.Enums.PaymentInitiatorEnum paymentInitiator) 
+            {
+                m_params.AddOpt("payment_initiator", paymentInitiator);
                 return this;
             }
             public CollectPaymentRequest PaymentMethodType(ChargeBee.Models.Enums.TypeEnum paymentMethodType) 
